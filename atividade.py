@@ -11,7 +11,9 @@ def criar_banco_dados():
         CREATE TABLE IF NOT EXISTS usuarios (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL
+            password_hash TEXT NOT NULL,
+            tentativas_falhas INTEGER DEFAULT 0,
+            conta_bloqueada INTEGER DEFAULT 0
         )
         ''')
         
@@ -56,6 +58,8 @@ def registrar_usuario(username, password):
     conn.commit()
     conn.close()
     print("Usuário registrado com sucesso.")
+
+
 
 
 username = input("Digite o nome de usuário: ")
